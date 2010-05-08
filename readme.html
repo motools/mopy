@@ -1,0 +1,335 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>mopy readme</title>
+	<meta name="generator" content="TextMate http://macromates.com/">
+	<meta name="author" content="Chris Sutton">
+	<style type="text/css">
+		pre { color: #FFFFFF; background-color: #303E51; padding:5px; border: 1px solid #cccbba;}
+		body { background-color: #EFFCFD;}
+		h2 { padding-top: 3em; }
+	</style>
+	<!-- Date: 2007-09-20 -->
+</head>
+<body>
+<h1 id="mopyreadme">Mopy Readme</h1>
+
+<h2 id="contents">Contents</h2>
+
+<ol>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#interactivesessionexamplea.k.a.whyusemopy">Interactive Session Example (a.k.a. &#8220;why use <code>mopy</code> ?&#8221;)</a></li>
+<li><a href="#requirements">Requirements</a></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#mopyclasses">Mopy classes</a></li>
+<li><a href="#mopyproperties">Mopy properties</a></li>
+<li><a href="#examplesofmopyinuse">Examples of mopy in use</a></li>
+<li><a href="#developers">Developers</a></li>
+</ol>
+
+<h2 id="introduction">Introduction</h2>
+
+<p><code>mopy</code> is the Music Ontology Python library, designed to provide easy to use python bindings for Music Ontology terms for the creation and manipulation of Music Ontology data. <code>mopy</code> includes :</p>
+
+<ul>
+<li>All terms from :
+<ul>
+<li>the <a href="http://www.musicontology.com/">Music Ontology</a></li>
+<li>the <a href="http://www.foaf-project.org/">Friend of a Friend</a> (FOAF) ontology</li>
+<li>the <a href="http://moustaki.org/c4dm/timeline.owl">Timeline</a> ontology</li>
+<li>the (new !) <a href="http://purl.org/ontology/chord/">Chord Ontology</a></li>
+</ul></li>
+<li>Easy conversion between RDF data and mopy objects
+<ul>
+<li>RDF can be read/written in XML or N3 format</li>
+</ul></li>
+<li>Type checking based on ontology definitions, to aid correct usage of ontology terms</li>
+</ul>
+
+<h2 id="interactivesessionexamplea.k.a.whyusemopy">Interactive Session Example (a.k.a. &#8220;why use <code>mopy</code> ?&#8221;)</h2>
+
+<p>Using rdflib directly, somebody might try to write about their friend who&#8217;s in a band as follows :</p>
+
+<pre><code>Python 2.4.4 (#1, Oct 18 2006, 10:34:39) 
+[GCC 4.0.1 (Apple Computer, Inc. build 5341)] on darwin
+&gt;&gt;&gt; import rdflib
+&gt;&gt;&gt; from rdflib import URIRef, Literal, BNode, RDF, RDFS, Namespace
+&gt;&gt;&gt; g = rdflib.ConjunctiveGraph()
+&gt;&gt;&gt; me = URIRef("http://mydomain.org/me")
+&gt;&gt;&gt; FOAF_ns = Namespace("http://xmlns.com/foaf/0.1/")
+&gt;&gt;&gt; g.add((me, RDF.type, FOAF_ns["Person"]))
+&gt;&gt;&gt; g.add((me, FOAF_ns["name"], Literal("Joe Bloggs")))
+&gt;&gt;&gt; artist = URIRef("http://zeitgeist.com/music/artist/FIXME")
+&gt;&gt;&gt; MO_ns = Namespace("http://purl.org/ontology/mo/")
+&gt;&gt;&gt; g.add((artist, RDF.type, MO_ns["music_artist"]))
+&gt;&gt;&gt; g.add((artist, FOAF_ns["nam"], Literal("Superstar artist")))
+&gt;&gt;&gt; g.add((me, FOAF_ns["interest"], artist))
+&gt;&gt;&gt; g.add((me, FOAF_ns["knows"], artist))
+</code></pre>
+
+<p>This can get quite tedious. Plus, there are mistakes (typo &#8220;name&#8221; property to &#8220;nam&#8221;, they meant mo:SoloMusicArtist rather than mo:music_artist, and foaf:interest is intended to link to a page about a topic of interest, not the topic itself) and it&#8217;s not easy to fix mistakes. For example, if the user needs to change the URI of the artist, they&#8217;ll have to write a loop to update all triples of relevance.</p>
+
+<p>Here&#8217;s the equivalent session using <code>mopy</code> :</p>
+
+<pre><code>[GCC 4.0.1 (Apple Computer, Inc. build 5341)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+&gt;&gt;&gt; import mopy
+&gt;&gt;&gt; me = mopy.foaf.Person("http://mydomain.org/me")
+&gt;&gt;&gt; me.name = "Joe Bloggs"
+&gt;&gt;&gt; artist = mopy.mo.music_artist("http://zeitgeist.com/music/artist/FIXME")
+AttributeError: 'module' object has no attribute 'music_artist'
+&gt;&gt;&gt; dir(mopy.mo)
+['AnalogSignal', 'Arrangement', 'Arranger', 'AudioFile', 'CD', 'Composer', 'Composition', 'Conductor',
+ 'CorporateBody', 'DAT', 'DCC', 'DVDA', 'DigitalSignal', 'ED2K', 'Festival', 'Genre', 'Instrument',
+ 'Instrumentation', 'Label', 'Libretto', 'Listener', 'Lyrics', 'MD', 'MagneticTape', 'Medium', 'Movement',
+ 'MusicArtist', 'MusicGroup', 'MusicalExpression', 'MusicalItem', 'MusicalManifestation', 'MusicalWork',
+ 'Orchestration', 'Performance', 'Performer', 'PublishedLibretto', 'PublishedLyrics', 'PublishedScore', 'Record',
+ 'Recording', 'ReleaseStatus', 'ReleaseType', 'SACD', 'Score', 'Show', 'Signal', 'SoloMusicArtist', 'Sound',
+ 'SoundEngineer', 'Stream', 'Torrent', 'Track', 'Vinyl', '__builtins__', '__doc__', '__file__', '__name__',
+ '__path__', 'album', 'audiobook', 'bootleg', 'compilation', 'ep', 'interview', 'live', 'mopy', 'official',
+ 'promotion', 'remix', 'soundtrack', 'spokenword']
+
+&gt;&gt;&gt; artist = mopy.mo.SoloMusicArtist("http://zeitgeist.com/music/artist/FIXME")
+&gt;&gt;&gt; artist.nam = "Superstar Artist"
+AttributeError: Not allowed add new attributes to classes ! Typo ?
+&gt;&gt;&gt; artist.name = "Superstar Artist"
+&gt;&gt;&gt; me.interest = artist
+TypeError: Invalid type ! Got &lt;class 'mopy.model.mo___MusicArtist'&gt; but expected one of : &lt;class 'mopy.model.foaf___Document'&gt;
+&gt;&gt;&gt; help (mopy.foaf.Person.interest)
+Help on property:
+    A page about a topic of interest to this person.
+&gt;&gt;&gt; me.knows = artist
+</code></pre>
+
+<p>The user has avoided the mistakes which are so easy to make dealing directly with triples, and they can then update the artist&#8217;s URI as easily as :</p>
+
+<pre><code>&gt;&gt;&gt; artist.URI = "http://zitgist.com/music/artist/62b86b55-e0aa-446f-b326-054576968310"
+</code></pre>
+
+<h2 id="requirements">Requirements</h2>
+
+<ul>
+<li>Written and tested on python 2.4 but may work fine on 2.3 or 2.5 - let us know if you try :)</li>
+<li>Python libraries :
+<ul>
+<li><a href="http://rdflib.org/">rdflib</a> v2.4.0 (easy_install)</li>
+</ul></li>
+</ul>
+
+<h2 id="installation">Installation</h2>
+
+<p>To install mopy, either check out the motools project from SVN and run mopy/genpy.py to generate mopy&#8217;s package files, or download the mopy package directly from <a href="http://sourceforge.net/project/showfiles.php?group_id=202492">sourceforge</a>. For now, just copy the mopy directory into your working directory, or your python&#8217;s library directory, we&#8217;ll be releasing an easier-to-install package soon :)</p>
+
+<h2 id="mopyclasses"><code>mopy</code> Classes</h2>
+
+<p>Start by importing the mopy package :</p>
+
+<pre><code>&gt;&gt;&gt; import mopy
+</code></pre>
+
+<p>Terms and instances are organised by namespace :</p>
+
+<pre><code>&gt;&gt;&gt; dir(mopy)
+['MusicInfo', 'PropertySet', 'RDFInterface', '__builtins__', '__doc__', '__file__', '__name__',
+ '__path__', 'chord', 'event', 'exportRDFFile', 'exportRDFGraph', 'foaf', 'frbr', 'geo', 'importRDFFile',
+ 'importRDFGraph', 'key', 'mo', 'model', 'owl', 'rdfs', 'time', 'timeline', 'tzont']
+
+&gt;&gt;&gt; dir(mopy.key)
+['Key', 'Note', '__builtins__', '__doc__', '__file__', '__name__', '__path__', 'mopy']
+</code></pre>
+
+<p>And you can pull terms from a particular ontology as you&#8217;d expect :</p>
+
+<pre><code>&gt;&gt;&gt; from mopy.mo import MusicArtist, Record, Performance
+</code></pre>
+
+<p>To check what properties an object can take, use dir :</p>
+
+<pre><code>&gt;&gt;&gt; dir(mopy.mo.MusicArtist)
+</code></pre>
+
+<p>Constructors take the URI of the resource, or if omitted, act as blank nodes :</p>
+
+<pre><code>&gt;&gt;&gt; band1 = mopy.mo.MusicGroup()
+&gt;&gt;&gt; print band1
+-- MusicGroup --
+
+&gt;&gt;&gt; band2 = mopy.mo.MusicGroup("http://band2.com/us")
+&gt;&gt;&gt; print band2
+-- MusicGroup @ http://band2.com/us --
+</code></pre>
+
+<h2 id="mopyproperties"><code>mopy</code> Properties</h2>
+
+<p>Properties are all treated as sets (so have no ordering), but we provide the shortcut of the &#8216;=&#8217; operator to assign a one element set :</p>
+
+<pre><code>&gt;&gt;&gt; band1.name = "awesome band"
+&gt;&gt;&gt; band1.name.add("DEATH MONKEYS")
+&gt;&gt;&gt; print band1
+-- MusicGroup --
+name : DEATH MONKEYS
+name : awesome band
+
+&gt;&gt;&gt; member_names = ["Baz", "Bill", "Bob", "Clifton"]
+&gt;&gt;&gt; for m in member_names:
+...     member = mopy.mo.SoloMusicArtist()
+...     member.name = m
+...     band1.member.add(member)
+... 
+&gt;&gt;&gt; print band1
+-- MusicGroup --
+member : &lt;class 'mopy.model.mo___SoloMusicArtist'&gt;
+member : &lt;class 'mopy.model.mo___SoloMusicArtist'&gt;
+member : &lt;class 'mopy.model.mo___SoloMusicArtist'&gt;
+member : &lt;class 'mopy.model.mo___SoloMusicArtist'&gt;
+name : DEATH MONKEYS
+name : awesome band
+
+&gt;&gt;&gt; print "\n".join(str(x) for x in band1.member)
+-- SoloMusicArtist --
+name : Baz
+-- SoloMusicArtist --
+name : Bill
+-- SoloMusicArtist --
+name : Bob
+-- SoloMusicArtist --
+name : Clifton
+</code></pre>
+
+<h2 id="musicinfoobjects"><code>MusicInfo</code> objects</h2>
+
+<p>To bundle up multiple mopy objects for serialisation, you can use the <code>MusicInfo</code> class :</p>
+
+<pre><code>&gt;&gt;&gt; mi = mopy.MusicInfo([band1] + list(band1.member))
+&gt;&gt;&gt; for o in mi.MusicGroupIdx.values():
+...     print o
+-- MusicGroup @ http://band1.com/us --
+member : &lt;class 'mopy.model.mo___SoloMusicArtist'&gt; @ blind:5429B6CE9A4F5096
+member : &lt;class 'mopy.model.mo___SoloMusicArtist'&gt; @ blind:7EA44980E55B36F6
+member : &lt;class 'mopy.model.mo___SoloMusicArtist'&gt; @ blind:367299F35DFDD780
+member : &lt;class 'mopy.model.mo___SoloMusicArtist'&gt; @ blind:47FF277BE93C35CD
+name : DEATH MONKEYS
+name : awesome band
+&gt;&gt;&gt; for o in mi.SoloMusicArtistIdx.values():
+...     print o
+-- SoloMusicArtist @ blind:7EA44980E55B36F6 --
+name : Bill
+-- SoloMusicArtist @ blind:367299F35DFDD780 --
+name : Bob
+-- SoloMusicArtist @ blind:5429B6CE9A4F5096 --
+name : Baz
+-- SoloMusicArtist @ blind:47FF277BE93C35CD --
+name : Clifton
+</code></pre>
+
+<p>Two python objects with the same URI will become a single python object within the MusicInfo object :</p>
+
+<pre><code>&gt;&gt;&gt; mi2 = mopy.MusicInfo()
+&gt;&gt;&gt; a1 = mopy.mo.MusicArtist("http://example.org/x")
+&gt;&gt;&gt; a1.name = "Martin"
+&gt;&gt;&gt; a2 = mopy.mo.MusicArtist("http://example.org/x")
+&gt;&gt;&gt; a2.name = "Martin Jones"
+&gt;&gt;&gt; mi2.add(a1)
+&gt;&gt;&gt; mi2.add(a2)
+&gt;&gt;&gt; for o in mi2.MainIdx.values():
+...     print o
+-- MusicArtist @ http://example.org/x --
+name : Martin Jones
+name : Martin
+</code></pre>
+
+<p>The functions in mopy.RDFInterface allow for creation of MusicInfo objects by reading in RDF, and the serialisation of MusicInfo objects as RDF (in XML or N3 format).
+eg.</p>
+
+<pre><code>&gt;&gt;&gt; mopy.RDFInterface.exportRDFFile(mi, "greatband.rdf", "n3")
+</code></pre>
+
+<p>produces:</p>
+
+<pre><code>@prefix _25: &lt;http://band1.com/&gt;.
+@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt;.
+@prefix mo: &lt;http://purl.org/ontology/mo/&gt;.
+@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;.
+
+ _25:us a mo:MusicGroup;
+     foaf:member [ a mo:SoloMusicArtist;
+             foaf:name "Bob"],
+         [ a mo:SoloMusicArtist;
+             foaf:name "Clifton"],
+         [ a mo:SoloMusicArtist;
+             foaf:name "Bill"],
+         [ a mo:SoloMusicArtist;
+             foaf:name "Baz"];
+     foaf:name "DEATH MONKEYS",
+         "awesome band".
+</code></pre>
+
+<h2 id="examplesofmopyinuse">Examples of <code>mopy</code> in use</h2>
+
+<ul>
+<li>The <a href="http://sourceforge.net/projects/motools/"><code>gnat</code> project</a> is using <code>mopy</code> to store information about a user&#8217;s music collection.</li>
+</ul>
+
+<p>eg. for metadata lookup : (from <code>AudioCollection.py</code>)</p>
+
+<pre><code>lookup = MbzTrackLookup(filename)
+mbzuri = lookup.getMbzTrackURI()
+mbzconvert = MbzURIConverter(mbzuri)
+af = AudioFile(urlencode(os.path.basename(filename)))
+mbz = Track(mbzconvert.getURI())
+mbz.available_as = af
+mi.add(af); mi.add(mbz)
+</code></pre>
+
+<ul>
+<li><p>A more detailed use can be found in the FPTrackLookup.py fingerprinting file.</p></li>
+<li><p>Some Chord Ontology <a href="http://sourceforge.net/projects/motools/">convertor tools</a> are using mopy&#8217;s timeline and chord ontology support to convert existing transcription formats to RDF.</p></li>
+</ul>
+
+<p>eg. from <code>labchords2RDF.py</code> :</p>
+
+<pre><code>tl = RelativeTimeLine("#tl")
+tl.label = "Timeline derived from "+infilename
+tl.maker = program
+mi.add(tl)
+
+intervalNum = 0
+for line in lines:
+    i = Interval("#i"+str(intervalNum))
+    try:
+        [start_s, end_s, label] = parseLabLine(line)
+        i.beginsAtDuration = secondsToXSDDuration(start_s)
+        i.endsAtDuration = secondsToXSDDuration(end_s)
+        i.label = "Interval containing "+label+" chord."
+        i.onTimeLine = tl
+
+        # Produce chord object for the label :
+        chordURI = "http://purl.org/ontology/chord/symbol/"+label.replace("#","s")
+        c = mopy.chord.Chord(chordURI)
+        c_event = mopy.chord.ChordEvent("#ce"+str(intervalNum))
+        c_event.chord = c
+        c_event.time = i
+    except Exception, e:
+        raise Exception("Problem parsing input file at line "+str(intervalNum+1)+" !\n"+str(e))
+    mi.add(i)
+    mi.add(c)
+    mi.add(c_event)
+    intervalNum+=1
+</code></pre>
+
+<ul>
+<li>The <a href="http://sourceforge.net/projects/mypyspace/">MyPySpace</a> project is using <code>mopy</code> to model FOAF relationships between MySpace users.</li>
+</ul>
+
+<h2 id="developers">Developers</h2>
+
+<ul>
+<li>Christopher Sutton : <code>chris (at) chrissutton (dot) org</code>  </li>
+<li>Yves Raimond : <code>yves (at) dbtune (dot) org</code>  </li>
+</ul>
+
+</body>
+</html>
