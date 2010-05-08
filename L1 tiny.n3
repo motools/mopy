@@ -1,0 +1,12 @@
+@prefix mo: <http://purl.org/ontology/mo/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix : <http://example.org/> .
+
+<http://zitgist.com/music/artist/2f58d07c-4ed6-4f29-8b10-95266e16fe1b> rdf:type mo:SoloMusicArtist ;
+    foaf:name "Dave Mustaine" ;
+    mo:member_of <http://zitgist.com/music/artist/65f4f0c5-ef9e-490c-aee3-909e7ae6b2ab> ;
+    mo:wikipedia <http://en.wikipedia.org/wiki/Dave_Mustaine> .
+
+<http://en.wikipedia.org/wiki/Dave_Mustaine> rdf:type foaf:Document .
+<http://zitgist.com/music/artist/65f4f0c5-ef9e-490c-aee3-909e7ae6b2ab> rdf:type mo:MusicGroup .
