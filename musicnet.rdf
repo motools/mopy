@@ -1,0 +1,239 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY foaf "http://xmlns.com/foaf/0.1/" >
+    <!ENTITY mo "http://purl.org/ontology/mo/" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY core "http://purl.org/vocab/frbr/core#" >
+    <!ENTITY owl11 "http://www.w3.org/2006/12/owl11#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY owl11xml "http://www.w3.org/2006/12/owl11-xml#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY musicnet "http://grasstunes.com/ontology/musicnet.owl#" >
+]>
+
+
+<rdf:RDF xmlns="http://grasstunes.net/ontology/musicnet.owl#"
+     xml:base="http://grasstunes.net/ontology/musicnet.owl"
+     xmlns:core="http://purl.org/vocab/frbr/core#"
+     xmlns:owl11="http://www.w3.org/2006/12/owl11#"
+     xmlns:owl11xml="http://www.w3.org/2006/12/owl11-xml#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:mo="http://purl.org/ontology/mo/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:foaf="http://xmlns.com/foaf/0.1/"
+     xmlns:musicnet="http://grasstunes.com/ontology/musicnet.owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#">
+    <owl:Ontology rdf:about="">
+        <rdfs:comment
+            >Describes music-related connections</rdfs:comment>
+        <owl:imports rdf:resource="http://purl.org/ontology/mo/"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://grasstunes.com/ontology/musicnet.owl#cmnHasInfluenced -->
+
+    <owl:ObjectProperty rdf:about="&musicnet;cmnHasInfluenced">
+        <rdfs:domain rdf:resource="&foaf;Agent"/>
+        <rdfs:range rdf:resource="&foaf;Agent"/>
+        <rdfs:comment
+            >Subject has influenced Object according to Classical Music Navigator influence connection
+
+http://www.wku.edu/~smithch/music/index2.htm</rdfs:comment>
+        <rdfs:subPropertyOf rdf:resource="&musicnet;musicallyConnected"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://grasstunes.com/ontology/musicnet.owl#cmnInfluencedBy -->
+
+    <owl:ObjectProperty rdf:about="&musicnet;cmnInfluencedBy">
+        <rdfs:domain rdf:resource="&foaf;Agent"/>
+        <rdfs:range rdf:resource="&foaf;Agent"/>
+        <rdfs:comment
+            >Subject has been influence by Object according to the Classical Music Navigator influence connection
+
+http://www.wku.edu/~smithch/music/index2.htm</rdfs:comment>
+        <rdfs:subPropertyOf rdf:resource="&musicnet;musicallyConnected"/>
+        <owl:inverseOf rdf:resource="&musicnet;cmnHasInfluenced"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://grasstunes.com/ontology/musicnet.owl#musicallyConnected -->
+
+    <owl:ObjectProperty rdf:about="&musicnet;musicallyConnected">
+        <rdfs:domain rdf:resource="&foaf;Agent"/>
+        <rdfs:range rdf:resource="&foaf;Agent"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://grasstunes.com/ontology/musicnet.owl#myspaceTopFriend -->
+
+    <owl:ObjectProperty rdf:about="&musicnet;myspaceTopFriend">
+        <rdfs:comment
+            >the myspace top friend relationship between artists</rdfs:comment>
+        <rdfs:range rdf:resource="&foaf;Agent"/>
+        <rdfs:domain rdf:resource="&foaf;Agent"/>
+		<rdfs:subPropertyOf rdf:resource="&foaf;knows"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://grasstunes.com/ontology/musicnet.owl#selfTaggedAs -->
+
+    <owl:ObjectProperty rdf:about="&musicnet;selfTaggedAs">
+        <rdfs:range rdf:resource="&mo;Genre"/>
+        <rdfs:domain rdf:resource="&foaf;Agent"/>
+        <rdfs:subPropertyOf rdf:resource="&musicnet;taggedAs"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://grasstunes.com/ontology/musicnet.owl#taggedAs -->
+
+    <owl:ObjectProperty rdf:about="&musicnet;taggedAs">
+        <rdfs:domain rdf:resource="&owl;Thing"/>
+        <rdfs:range rdf:resource="&owl;Thing"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://grasstunes.com/ontology/musicnet.owl#amgA_ID -->
+
+    <owl:DatatypeProperty rdf:about="&musicnet;amgA_ID">
+        <rdfs:domain rdf:resource="&core;Work"/>
+        <rdfs:domain rdf:resource="&mo;MusicalItem"/>
+        <rdfs:comment
+            >All Music Guide album id or A_ID</rdfs:comment>
+        <rdfs:domain rdf:resource="&core;Manifestation"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://grasstunes.com/ontology/musicnet.owl#amgP_ID -->
+
+    <owl:DatatypeProperty rdf:about="&musicnet;amgP_ID">
+        <rdfs:comment
+            >All Music Guide artist ID or P_ID</rdfs:comment>
+        <rdfs:domain rdf:resource="&foaf;Agent"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://grasstunes.com/ontology/musicnet.owl#amgT_ID -->
+
+    <owl:DatatypeProperty rdf:about="&musicnet;amgT_ID">
+        <rdfs:comment
+            >All Music Guide track id or T_ID</rdfs:comment>
+        <rdfs:domain rdf:resource="&core;Work"/>
+        <rdfs:domain rdf:resource="&core;Manifestation"/>
+        <rdfs:domain rdf:resource="&mo;MusicalItem"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://grasstunes.com/ontology/musicnet.owl#myspaceTotalPlays -->
+
+    <owl:DatatypeProperty rdf:about="&musicnet;myspaceTotalPlays">
+        <rdfs:domain rdf:resource="&foaf;Agent"/>
+        <rdfs:comment
+            >total plays count for artist</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://grasstunes.com/ontology/musicnet.owl#myspaceTrackPlays -->
+
+    <owl:DatatypeProperty rdf:about="&musicnet;myspaceTrackPlays">
+        <rdfs:domain rdf:resource="&mo;MusicalExpression"/>
+        <rdfs:domain rdf:resource="&mo;MusicalWork"/>
+        <rdfs:domain rdf:resource="&mo;MusicalItem"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/ontology/mo/Genre -->
+
+    <owl:Class rdf:about="&mo;Genre"/>
+    
+
+
+    <!-- http://purl.org/ontology/mo/MusicalExpression -->
+
+    <owl:Class rdf:about="&mo;MusicalExpression"/>
+    
+
+
+    <!-- http://purl.org/ontology/mo/MusicalItem -->
+
+    <owl:Class rdf:about="&mo;MusicalItem"/>
+    
+
+
+    <!-- http://purl.org/ontology/mo/MusicalWork -->
+
+    <owl:Class rdf:about="&mo;MusicalWork"/>
+    
+
+
+    <!-- http://purl.org/vocab/frbr/core#Manifestation -->
+
+    <owl:Class rdf:about="&core;Manifestation"/>
+    
+
+
+    <!-- http://purl.org/vocab/frbr/core#Work -->
+
+    <owl:Class rdf:about="&core;Work"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#Thing -->
+
+    <owl:Class rdf:about="&owl;Thing"/>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Agent -->
+
+    <owl:Class rdf:about="&foaf;Agent"/>
+</rdf:RDF>
