@@ -1,0 +1,1 @@
+fix the EquivalentTo bug (at present sameAs is needed to make two things act like they were the same)
