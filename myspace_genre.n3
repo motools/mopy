@@ -1,0 +1,124 @@
+@prefix mo: <http://purl.org/ontology/mo/>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+
+
+<http://grasstunes.net/ontology/myspace.owl#2-step> rdf:type mo:Genre;rdfs:label "2-step".
+<http://grasstunes.net/ontology/myspace.owl#A%27cappella> rdf:type mo:Genre;rdfs:label "A'cappella".
+<http://grasstunes.net/ontology/myspace.owl#Acousmatic%20/%20Tape%20music> rdf:type mo:Genre;rdfs:label "Acousmatic / Tape music".
+<http://grasstunes.net/ontology/myspace.owl#Acoustic> rdf:type mo:Genre;rdfs:label "Acoustic".
+<http://grasstunes.net/ontology/myspace.owl#Afro-beat> rdf:type mo:Genre;rdfs:label "Afro-beat".
+<http://grasstunes.net/ontology/myspace.owl#Alternative> rdf:type mo:Genre;rdfs:label "Alternative".
+<http://grasstunes.net/ontology/myspace.owl#Ambient> rdf:type mo:Genre;rdfs:label "Ambient".
+<http://grasstunes.net/ontology/myspace.owl#Americana> rdf:type mo:Genre;rdfs:label "Americana".
+<http://grasstunes.net/ontology/myspace.owl#Anime%20Song> rdf:type mo:Genre;rdfs:label "Anime Song".
+<http://grasstunes.net/ontology/myspace.owl#Big%20Beat> rdf:type mo:Genre;rdfs:label "Big Beat".
+<http://grasstunes.net/ontology/myspace.owl#Black%20Metal> rdf:type mo:Genre;rdfs:label "Black Metal".
+<http://grasstunes.net/ontology/myspace.owl#Bluegrass> rdf:type mo:Genre;rdfs:label "Bluegrass".
+<http://grasstunes.net/ontology/myspace.owl#Blues> rdf:type mo:Genre;rdfs:label "Blues".
+<http://grasstunes.net/ontology/myspace.owl#Bossa%20Nova> rdf:type mo:Genre;rdfs:label "Bossa Nova".
+<http://grasstunes.net/ontology/myspace.owl#Breakbeat> rdf:type mo:Genre;rdfs:label "Breakbeat".
+<http://grasstunes.net/ontology/myspace.owl#Breakcore> rdf:type mo:Genre;rdfs:label "Breakcore".
+<http://grasstunes.net/ontology/myspace.owl#Celtic> rdf:type mo:Genre;rdfs:label "Celtic".
+<http://grasstunes.net/ontology/myspace.owl#Children> rdf:type mo:Genre;rdfs:label "Children".
+<http://grasstunes.net/ontology/myspace.owl#Chinese%20pop> rdf:type mo:Genre;rdfs:label "Chinese pop".
+<http://grasstunes.net/ontology/myspace.owl#Chinese%20traditional> rdf:type mo:Genre;rdfs:label "Chinese traditional".
+<http://grasstunes.net/ontology/myspace.owl#Christian> rdf:type mo:Genre;rdfs:label "Christian".
+<http://grasstunes.net/ontology/myspace.owl#Christian%20Rap> rdf:type mo:Genre;rdfs:label "Christian Rap".
+<http://grasstunes.net/ontology/myspace.owl#Classic%20Rock> rdf:type mo:Genre;rdfs:label "Classic Rock".
+<http://grasstunes.net/ontology/myspace.owl#Classical> rdf:type mo:Genre;rdfs:label "Classical".
+<http://grasstunes.net/ontology/myspace.owl#Classical%20-%20Opera%20and%20Vocal> rdf:type mo:Genre;rdfs:label "Classical - Opera and Vocal".
+<http://grasstunes.net/ontology/myspace.owl#Club> rdf:type mo:Genre;rdfs:label "Club".
+<http://grasstunes.net/ontology/myspace.owl#Comedy> rdf:type mo:Genre;rdfs:label "Comedy".
+<http://grasstunes.net/ontology/myspace.owl#Concrete> rdf:type mo:Genre;rdfs:label "Concrete".
+<http://grasstunes.net/ontology/myspace.owl#Country> rdf:type mo:Genre;rdfs:label "Country".
+<http://grasstunes.net/ontology/myspace.owl#Death%20Metal> rdf:type mo:Genre;rdfs:label "Death Metal".
+<http://grasstunes.net/ontology/myspace.owl#Disco%20House> rdf:type mo:Genre;rdfs:label "Disco House".
+<http://grasstunes.net/ontology/myspace.owl#Down-tempo> rdf:type mo:Genre;rdfs:label "Down-tempo".
+<http://grasstunes.net/ontology/myspace.owl#Drum%20%26%20Bass> rdf:type mo:Genre;rdfs:label "Drum & Bass".
+<http://grasstunes.net/ontology/myspace.owl#Dub> rdf:type mo:Genre;rdfs:label "Dub".
+<http://grasstunes.net/ontology/myspace.owl#Dutch%20pop> rdf:type mo:Genre;rdfs:label "Dutch pop".
+<http://grasstunes.net/ontology/myspace.owl#Electro> rdf:type mo:Genre;rdfs:label "Electro".
+<http://grasstunes.net/ontology/myspace.owl#Electroacoustic> rdf:type mo:Genre;rdfs:label "Electroacoustic".
+<http://grasstunes.net/ontology/myspace.owl#Electronica> rdf:type mo:Genre;rdfs:label "Electronica".
+<http://grasstunes.net/ontology/myspace.owl#Emo> rdf:type mo:Genre;rdfs:label "Emo".
+<http://grasstunes.net/ontology/myspace.owl#Emotronic> rdf:type mo:Genre;rdfs:label "Emotronic".
+<http://grasstunes.net/ontology/myspace.owl#Experimental> rdf:type mo:Genre;rdfs:label "Experimental".
+<http://grasstunes.net/ontology/myspace.owl#Flamenco> rdf:type mo:Genre;rdfs:label "Flamenco".
+<http://grasstunes.net/ontology/myspace.owl#Folk> rdf:type mo:Genre;rdfs:label "Folk".
+<http://grasstunes.net/ontology/myspace.owl#Folk%20Rock> rdf:type mo:Genre;rdfs:label "Folk Rock".
+<http://grasstunes.net/ontology/myspace.owl#French%20pop> rdf:type mo:Genre;rdfs:label "French pop".
+<http://grasstunes.net/ontology/myspace.owl#Funk> rdf:type mo:Genre;rdfs:label "Funk".
+<http://grasstunes.net/ontology/myspace.owl#Fusion> rdf:type mo:Genre;rdfs:label "Fusion".
+<http://grasstunes.net/ontology/myspace.owl#Garage> rdf:type mo:Genre;rdfs:label "Garage".
+<http://grasstunes.net/ontology/myspace.owl#German%20pop> rdf:type mo:Genre;rdfs:label "German pop".
+<http://grasstunes.net/ontology/myspace.owl#Glam> rdf:type mo:Genre;rdfs:label "Glam".
+<http://grasstunes.net/ontology/myspace.owl#Gospel> rdf:type mo:Genre;rdfs:label "Gospel".
+<http://grasstunes.net/ontology/myspace.owl#Gothic> rdf:type mo:Genre;rdfs:label "Gothic".
+<http://grasstunes.net/ontology/myspace.owl#Grime> rdf:type mo:Genre;rdfs:label "Grime".
+<http://grasstunes.net/ontology/myspace.owl#Grindcore> rdf:type mo:Genre;rdfs:label "Grindcore".
+<http://grasstunes.net/ontology/myspace.owl#Grunge> rdf:type mo:Genre;rdfs:label "Grunge".
+<http://grasstunes.net/ontology/myspace.owl#Happy%20Hardcre> rdf:type mo:Genre;rdfs:label "Happy Hardcre".
+<http://grasstunes.net/ontology/myspace.owl#Hard%20House> rdf:type mo:Genre;rdfs:label "Hard House".
+<http://grasstunes.net/ontology/myspace.owl#Hardcore> rdf:type mo:Genre;rdfs:label "Hardcore".
+<http://grasstunes.net/ontology/myspace.owl#Healing%20%26%20EasyListening> rdf:type mo:Genre;rdfs:label "Healing & EasyListening".
+<http://grasstunes.net/ontology/myspace.owl#Hip%20Hop> rdf:type mo:Genre;rdfs:label "Hip Hop".
+<http://grasstunes.net/ontology/myspace.owl#House> rdf:type mo:Genre;rdfs:label "House".
+<http://grasstunes.net/ontology/myspace.owl#IDM> rdf:type mo:Genre;rdfs:label "IDM".
+<http://grasstunes.net/ontology/myspace.owl#Idol> rdf:type mo:Genre;rdfs:label "Idol".
+<http://grasstunes.net/ontology/myspace.owl#Indie> rdf:type mo:Genre;rdfs:label "Indie".
+<http://grasstunes.net/ontology/myspace.owl#Industrial> rdf:type mo:Genre;rdfs:label "Industrial".
+<http://grasstunes.net/ontology/myspace.owl#Italian%20pop> rdf:type mo:Genre;rdfs:label "Italian pop".
+<http://grasstunes.net/ontology/myspace.owl#Jam%20Band> rdf:type mo:Genre;rdfs:label "Jam Band".
+<http://grasstunes.net/ontology/myspace.owl#Japanese%20Classic%20Music> rdf:type mo:Genre;rdfs:label "Japanese Classic Music".
+<http://grasstunes.net/ontology/myspace.owl#Japanese%20Pop> rdf:type mo:Genre;rdfs:label "Japanese Pop".
+<http://grasstunes.net/ontology/myspace.owl#Jazz> rdf:type mo:Genre;rdfs:label "Jazz".
+<http://grasstunes.net/ontology/myspace.owl#Jungle> rdf:type mo:Genre;rdfs:label "Jungle".
+<http://grasstunes.net/ontology/myspace.owl#Korean%20Pop> rdf:type mo:Genre;rdfs:label "Korean Pop".
+<http://grasstunes.net/ontology/myspace.owl#Latin> rdf:type mo:Genre;rdfs:label "Latin".
+<http://grasstunes.net/ontology/myspace.owl#Live%20Electronics> rdf:type mo:Genre;rdfs:label "Live Electronics".
+<http://grasstunes.net/ontology/myspace.owl#Lounge> rdf:type mo:Genre;rdfs:label "Lounge".
+<http://grasstunes.net/ontology/myspace.owl#Lyrical> rdf:type mo:Genre;rdfs:label "Lyrical".
+<http://grasstunes.net/ontology/myspace.owl#Melodramatic%20Popular%20Song> rdf:type mo:Genre;rdfs:label "Melodramatic Popular Song".
+<http://grasstunes.net/ontology/myspace.owl#Metal> rdf:type mo:Genre;rdfs:label "Metal".
+<http://grasstunes.net/ontology/myspace.owl#Minimalist> rdf:type mo:Genre;rdfs:label "Minimalist".
+<http://grasstunes.net/ontology/myspace.owl#New%20Wave> rdf:type mo:Genre;rdfs:label "New Wave".
+<http://grasstunes.net/ontology/myspace.owl#Nu-Jazz> rdf:type mo:Genre;rdfs:label "Nu-Jazz".
+<http://grasstunes.net/ontology/myspace.owl#Other> rdf:type mo:Genre;rdfs:label "Other".
+<http://grasstunes.net/ontology/myspace.owl#Pop> rdf:type mo:Genre;rdfs:label "Pop".
+<http://grasstunes.net/ontology/myspace.owl#Pop%20Punk> rdf:type mo:Genre;rdfs:label "Pop Punk".
+<http://grasstunes.net/ontology/myspace.owl#Post%20punk> rdf:type mo:Genre;rdfs:label "Post punk".
+<http://grasstunes.net/ontology/myspace.owl#Powerpop> rdf:type mo:Genre;rdfs:label "Powerpop".
+<http://grasstunes.net/ontology/myspace.owl#Progressive> rdf:type mo:Genre;rdfs:label "Progressive".
+<http://grasstunes.net/ontology/myspace.owl#Progrsv%20House> rdf:type mo:Genre;rdfs:label "Progrsv House".
+<http://grasstunes.net/ontology/myspace.owl#Psychedelic> rdf:type mo:Genre;rdfs:label "Psychedelic".
+<http://grasstunes.net/ontology/myspace.owl#Psychobilly> rdf:type mo:Genre;rdfs:label "Psychobilly".
+<http://grasstunes.net/ontology/myspace.owl#Punk> rdf:type mo:Genre;rdfs:label "Punk".
+<http://grasstunes.net/ontology/myspace.owl#R%26B> rdf:type mo:Genre;rdfs:label "R&B".
+<http://grasstunes.net/ontology/myspace.owl#Rap> rdf:type mo:Genre;rdfs:label "Rap".
+<http://grasstunes.net/ontology/myspace.owl#Reggae> rdf:type mo:Genre;rdfs:label "Reggae".
+<http://grasstunes.net/ontology/myspace.owl#Religious> rdf:type mo:Genre;rdfs:label "Religious".
+<http://grasstunes.net/ontology/myspace.owl#Rock> rdf:type mo:Genre;rdfs:label "Rock".
+<http://grasstunes.net/ontology/myspace.owl#Rockabilly> rdf:type mo:Genre;rdfs:label "Rockabilly".
+<http://grasstunes.net/ontology/myspace.owl#Roots%20Music> rdf:type mo:Genre;rdfs:label "Roots Music".
+<http://grasstunes.net/ontology/myspace.owl#Salsa> rdf:type mo:Genre;rdfs:label "Salsa".
+<http://grasstunes.net/ontology/myspace.owl#Samba> rdf:type mo:Genre;rdfs:label "Samba".
+<http://grasstunes.net/ontology/myspace.owl#Screamo> rdf:type mo:Genre;rdfs:label "Screamo".
+<http://grasstunes.net/ontology/myspace.owl#Shoegaze> rdf:type mo:Genre;rdfs:label "Shoegaze".
+<http://grasstunes.net/ontology/myspace.owl#Showtunes> rdf:type mo:Genre;rdfs:label "Showtunes".
+<http://grasstunes.net/ontology/myspace.owl#Ska> rdf:type mo:Genre;rdfs:label "Ska".
+<http://grasstunes.net/ontology/myspace.owl#Soul> rdf:type mo:Genre;rdfs:label "Soul".
+<http://grasstunes.net/ontology/myspace.owl#Soundtracks%20/%20Film%20music> rdf:type mo:Genre;rdfs:label "Soundtracks / Film music".
+<http://grasstunes.net/ontology/myspace.owl#Southern%20Rock> rdf:type mo:Genre;rdfs:label "Southern Rock".
+<http://grasstunes.net/ontology/myspace.owl#Spanish%20pop> rdf:type mo:Genre;rdfs:label "Spanish pop".
+<http://grasstunes.net/ontology/myspace.owl#Surf> rdf:type mo:Genre;rdfs:label "Surf".
+<http://grasstunes.net/ontology/myspace.owl#Swing> rdf:type mo:Genre;rdfs:label "Swing".
+<http://grasstunes.net/ontology/myspace.owl#Tango> rdf:type mo:Genre;rdfs:label "Tango".
+<http://grasstunes.net/ontology/myspace.owl#Techno> rdf:type mo:Genre;rdfs:label "Techno".
+<http://grasstunes.net/ontology/myspace.owl#Thrash> rdf:type mo:Genre;rdfs:label "Thrash".
+<http://grasstunes.net/ontology/myspace.owl#Trance> rdf:type mo:Genre;rdfs:label "Trance".
+<http://grasstunes.net/ontology/myspace.owl#Trance> rdf:type mo:Genre;rdfs:label "Trance".
+<http://grasstunes.net/ontology/myspace.owl#Trip%20Hop> rdf:type mo:Genre;rdfs:label "Trip Hop".
+<http://grasstunes.net/ontology/myspace.owl#Tropical> rdf:type mo:Genre;rdfs:label "Tropical".
+<http://grasstunes.net/ontology/myspace.owl#Visual> rdf:type mo:Genre;rdfs:label "Visual".
+<http://grasstunes.net/ontology/myspace.owl#Zouk> rdf:type mo:Genre;rdfs:label "Zouk".
