@@ -167,7 +167,7 @@ class Generator:
 				props.extend(inverses)
 			 
 			# Harder case : Named in a collection in property's domain
-			for bn in (o for (s,p,o) in self.graph.triples((prop,RDFS.domain,None)) if isinstance(o, BNode)):
+			for bn in ([o for (s,p,o) in self.graph.triples((prop,RDFS.domain,None)) if isinstance(o, BNode)]):
 				try:
 					un = (self.graph.objects(bn,OWL["unionOf"])).next()
 					domain = Collection(self.graph, un)
@@ -215,7 +215,7 @@ class Generator:
 						print "WARNING : Ignoring owl:Restriction on parents of "+str(self.c)
 					else:
 						print "Unhandled Blind Node in getParents ! No unionOf found. Triples :"
-						print "\n".join(list(str(trip) for trip in self.graph.triples((parent,None,None))))
+						print "\n".join(list([str(trip) for trip in self.graph.triples((parent,None,None))]))
 						raise Exception("Unhandled Blind Node in getParents")
 				
 		# Handle owl:sameAs links
@@ -269,6 +269,7 @@ class Generator:
 			
 def PropQNameToPyName(qname):
 #	return qname.replace(":","_") # Probably don't need namespace in property names
+	# print "property name %s" % qname
 	return qname.split(":")[1]
 	
 def ClassQNameToPyModuleName(qname):
@@ -307,27 +308,43 @@ def main():
 	spec_g = rdflib.ConjunctiveGraph()
 	print "Loading ontology documents..."
 	# add mew ontologies here...
+	spec_g.load("extras.rdfs")
+	spec_g.load("dcterms.rdf")
+	spec_g.load("dcelements.rdf")
 	spec_g.load("owl.rdfs")
 	spec_g.load("time.owl")
-	spec_g.load("classicalmusicnav.owl")
-	spec_g.load("musicontology.rdfs")
-	spec_g.load("extras.rdfs")
 	spec_g.load("foaf.rdfs")
-	spec_g.load("chordontology.rdfs")
-	spec_g.load("timeline.rdf")
+	spec_g.load("wgs84_pos.rdf")
 	spec_g.load("event.rdf")
+	spec_g.load("timeline.rdf")
+	spec_g.load("musicontology.rdfs")
+	spec_g.load("chordontology.rdfs")
 	spec_g.load("myspace.owl")
+	spec_g.load("classicalmusicnav.owl")
 
 	# FIXME : Why do these get lost in loading ?
 	spec_g.namespace_manager.bind("owl",rdflib.URIRef('http://www.w3.org/2002/07/owl#'))
-	spec_g.namespace_manager.bind("classicalmusicnav", rdflib.URIRef("http://grasstunes.net/ontology/classicalmusicnav.owl#"))
-	spec_g.namespace_manager.bind("timeline",rdflib.URIRef('http://purl.org/NET/c4dm/timeline.owl#'))
+	spec_g.namespace_manager.bind("dcterms", rdflib.URIRef("http://purl.org/dc/terms/"))
+	spec_g.namespace_manager.bind("dc", rdflib.URIRef("http://purl.org/dc/elements/1.1/"))
 	spec_g.namespace_manager.bind("time", rdflib.URIRef("http://www.w3.org/2006/time#"))
-	spec_g.namespace_manager.bind("myspace", rdflib.URIRef("http://grasstunes.net/ontology/myspace.owl#"))
+	spec_g.namespace_manager.bind("foaf", rdflib.URIRef("http://xmlns.com/foaf/0.1/"))
+	spec_g.namespace_manager.bind("geo", rdflib.URIRef("http://www.w3.org/2003/01/geo/wgs84_pos#"))
+	spec_g.namespace_manager.bind("event", rdflib.URIRef("http://purl.org/NET/c4dm/event.owl#"))
+	spec_g.namespace_manager.bind("timeline",rdflib.URIRef('http://purl.org/NET/c4dm/timeline.owl#'))
+	spec_g.namespace_manager.bind("mo", rdflib.URIRef('http://purl.org/ontology/mo/'))
+	spec_g.namespace_manager.bind("classicalmusicnav", rdflib.URIRef("http://purl.org/ontology/classicalmusicnav#"))
+	spec_g.namespace_manager.bind("myspace", rdflib.URIRef("http://purl.org/ontology/myspace#"))
+	spec_g.namespace_manager.bind("frbr", rdflib.URIRef("http://purl.org/vocab/frbr/core#"))
+	spec_g.namespace_manager.bind("chord", rdflib.URIRef("http://purl.org/ontology/chord/"))
+	spec_g.namespace_manager.bind("keys", rdflib.URIRef("http://purl.org/NET/c4dm/keys.owl#"))
+	spec_g.namespace_manager.bind("wot", rdflib.URIRef("http://xmlns.com/wot/0.1/"))
+	spec_g.namespace_manager.bind("tzont", rdflib.URIRef("http://www.w3.org/2006/timezone#"))
+	spec_g.namespace_manager.bind("con", rdflib.URIRef('http://www.w3.org/2000/10/swap/pim/contact#'))
 
-	classes = list(set(s for s in spec_g.subjects(RDF.type, OWL.Class) if type(s) != BNode)) # rdflib says rdfs:Class is a subClass of owl:Class - check !
+	classes = list(set([s for s in spec_g.subjects(RDF.type, OWL.Class) if type(s) != BNode])) # rdflib says rdfs:Class is a subClass of owl:Class - check !
 	removeDeprecated(spec_g, classes)
 	classes.sort() # Ensure serialisation order is reasonably consistent across runs
+	print "classes: " + str(classes)
 	classtxt = {}
 	parents = {}
 	
@@ -393,6 +410,8 @@ def objToStr(c):
 		g.printAll()
 		classtxt[str(c)] = g.out
 		parents[str(c)] = [str(p) for p in g.getParents()]
+		parentstr = parents.get(str(c))
+		print "parent type list: " + str(parentstr) + " :: of: " + str(c)
 		g.addImportForClass() # Add the class to the right namespace
 
 	#
@@ -404,6 +423,7 @@ def objToStr(c):
 		lastlen = len(remclasses)
 		print("pass "+ str(n))
 		for c in remclasses:
+			print "class: " + str(c) + " :: #parents: " + str(len(parents[c])) + " :: parents: " + str(parents[c])
 			if len(parents[c]) == 0: # Write out orphans immediately
 				model.write(classtxt[c])
 				print(" wrote "+c)
@@ -453,4 +473,3 @@ def objToStr(c):
 
 if __name__ == '__main__':
 	main()
-

@@ -26,9 +26,11 @@
 		<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
 	</rdfs:Class>
 	
+	<!-- Big Cheat -->
 	<rdfs:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Resource" rdfs:label="Resource">
 		<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
 	</rdfs:Class>
+	
 	<rdf:Property rdf:about="http://www.w3.org/2000/01/rdf-schema#label">
 	  <rdfs:isDefinedBy rdf:resource="http://www.w3.org/2000/01/rdf-schema#"/>
 	  <rdfs:label>label</rdfs:label>
@@ -37,54 +39,22 @@
 	  <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
 	</rdf:Property>
 	
-
-	<rdfs:Class rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing" rdfs:label="SpatialThing">
-		<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-	</rdfs:Class>
-	
-	<owl:Class rdf:about="http://www.w3.org/2002/07/owl#Thing">
-	  <rdfs:label>Thing</rdfs:label>
-	</owl:Class>
-	
 	<owl:Class rdf:about="http://purl.org/NET/c4dm/keys.owl#Note"/>
   	<owl:Class rdf:about="http://purl.org/NET/c4dm/keys.owl#Key"/>
 	
-
-	<rdf:Property rdf:about="http://purl.org/dc/elements/1.1/title">
-		<rdfs:label xml:lang="en-US">Title</rdfs:label>
-		<rdfs:comment xml:lang="en-US">A name given to the resource.</rdfs:comment>
-		<dc:description xml:lang="en-US">Typically, a Title will be a name by which 
-		        the resource is formally known.</dc:description>
-		<rdfs:isDefinedBy rdf:resource="http://purl.org/dc/elements/1.1/"/>
-	    <rdfs:domain rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/> <!-- CHEAT ! -->
-		<rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/> <!-- CHEAT ! -->
-		<dc:type rdf:resource="http://dublincore.org/usage/documents/principles/#element"/>
-	</rdf:Property>
-	
-	<rdf:Property rdf:about="http://purl.org/dc/elements/1.1/creator">
-		<rdfs:label xml:lang="en-US">Creator</rdfs:label>
-		<rdfs:comment xml:lang="en-US">An entity primarily responsible for making 
-		        the resource.</rdfs:comment>
-		<dc:description xml:lang="en-US">Examples of a Creator include a person, an
-		        organization, or a service. Typically, the name
-		        of a Creator should be used to indicate the entity.</dc:description>
-		<rdfs:isDefinedBy rdf:resource="http://purl.org/dc/elements/1.1/"/>
-	    <rdfs:domain rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/> <!-- CHEAT ! -->
-		<rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Agent"/> <!-- CHEAT ! -->
-		<dc:type rdf:resource="http://dublincore.org/usage/documents/principles/#element"/>
-	</rdf:Property>
-	
-	<rdf:Property rdf:about="http://purl.org/dc/elements/1.1/description">
-	<rdfs:label xml:lang="en-US">Description</rdfs:label>
-	<rdfs:comment xml:lang="en-US">An account of the resource.</rdfs:comment>
-	<dc:description xml:lang="en-US">Description may include but is not limited to:
-	        an abstract, a table of contents, a graphical
-	        representation, or a free-text account of
-	        the resource.</dc:description>
-	<rdfs:isDefinedBy rdf:resource="http://purl.org/dc/elements/1.1/"/>
-    <rdfs:domain rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/> <!-- CHEAT ! -->
-	<rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/> <!-- CHEAT ! -->
-	<dc:type rdf:resource="http://dublincore.org/usage/documents/principles/#element"/>
-	</rdf:Property>
+	<!-- To parse FOAF Ontology -->
+	<rdfs:Class rdf:about="http://www.w3.org/2000/10/swap/pim/contact#SocialEntity">
+		 <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+		 <rdfs:label>SocialEntity</rdfs:label>
+        <comment>The sort of thing which can have a phone number.
+    Typically a person or an incorporated company, or unincorporated group.</comment>
+    </rdfs:Class>
+    
+    <rdfs:Class rdf:about="http://www.w3.org/2000/10/swap/pim/contact#Person">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+        <rdfs:label>Person</rdfs:label>
+        <comment>A person in the normal sense of the word.</comment>
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2000/10/swap/pim/contact#SocialEntity"/>
+    </rdfs:Class>
 
 </rdf:RDF>

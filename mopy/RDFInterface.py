@@ -247,6 +247,3 @@ def exportRDFFile(mi, filename, format="xml"):
 	out = open(filename,'w')
 	out.write(g.serialize(format=format))
 	out.close()
-
-		
-		
