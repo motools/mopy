@@ -1,0 +1,79 @@
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix mo: <http://purl.org/ontology/mo/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix ne: <http://music.org/needles#>.
+@prefix phil: <http://ourspace.com/phil#>.
+@prefix mary: <http://ourspace.com/mary#>.
+@prefix time: <http://www.w3.org/2006/time#>.
+@prefix event: <http://purl.org/NET/c4dm/event.owl#>.
+@prefix timeline: <http://purl.org/NET/c4dm/timeline.owl#>.
+@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>.
+
+ # Description of the band
+ ne:theneedles a mo:MusicGroup;
+ 	dc:title "The Needles";
+ 	foaf:homepage <http://theneedles.net/>;
+ 	mo:myspace <http://myspace.com/needlesuk> .
+
+<http://theneedles.net/> a foaf:Document .
+<http://myspace.com/needlesuk> a foaf:Document .
+
+ # Description of the gig
+ ne:gigalbany a mo:Performance;
+ 	dc:title "Gig at the Albany Pub, in London, of the Needles, the 14th of February";
+ 	mo:performer ne:theneedles;
+ 	event:hasProduct ne:gigalbanysnd;
+ 	event:time ne:gigalbanytime;
+ 	event:place ne:albany .
+
+ ne:gigalbanysnd a mo:Sound .
+ ne:albany a geo:SpatialThing .
+
+ # Note: You can describe ne:albany using the http://www.w3.org/2003/01/geo/wgs84_pos# ontology, if you want.
+ ne:gigalbanytime a time:DateTimeInterval;
+ 	time:intervalDuring <http://placetime.com/interval/gregorian/2007-15-02T00:00:00Z/P1D>; #placetime.com doesn't seem to output a convenient description though...
+ 	timeline:onTimeLine timeline:universaltimeline;
+ 	dc:title "When the gig of the needles actually occured: we just know it happened on the 14th of february 2007" .
+
+<http://placetime.com/interval/gregorian/2007-15-02T00:00:00Z/P1D> a time:ProperInterval .
+
+ # Description of what Phil put on his semantic weblog
+ phil:phil a foaf:Person;
+ 	foaf:name "Phil" .
+
+ ne:gigalbany mo:listener phil:phil. #hey, I was there!
+
+ phil:recording a mo:Recording;
+ 	dc:title "I actually recorded something there with my cell phone!";
+ 	event:hasFactor ne:gigalbanysnd;
+ 	event:hasFactor phil:mycellphone;
+ 	event:hasProduct phil:signal .
+
+ phil:signal a mo:Signal;
+	mo:published_as [
+ 	a mo:Record;
+ 	mo:free_download <http://ourspace.org/phil/needles_albany.mp3>;
+	# Phil also put it on another server!
+ 	mo:free_download <http://ourmirror.org/needles_albany.mp3>;
+ 	] .
+
+<http://ourspace.org/phil/needles_albany.mp3> a foaf:Document .
+
+<http://ourmirror.org/needles_albany.mp3> a foaf:Document .
+
+ # Description of what Mary put on her semantic weblog
+ mary:mary a foaf:Person;
+ 	foaf:name "Mary" .
+
+ ne:gigalbany mo:listener mary:mary. #hey, I was there!!
+
+ mary:rec a mo:Recording;
+ 	dc:title "Hey, I recorded this gig with my zPod, it was amazing, check it out!!";
+ 	event:hasFactor ne:gigalbanysnd;
+ 	event:hasProduct mary:sig .
+
+ mary:sig a mo:Signal;
+	mo:published_as [a mo:Record;
+	 				mo:free_download <http://ourspace.org/mary/albany_zpod.mp3>] .
+
+<http://ourspace.org/mary/albany_zpod.mp3> a foaf:Document .
