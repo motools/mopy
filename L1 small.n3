@@ -1,0 +1,62 @@
+# From http://wiki.musicontology.com/index.php/Yet_another_basic_example
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix mo: <http://purl.org/ontology/mo/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix all: <http://music.org/all#> .
+
+# Description of the music group "ALL"
+all:all a mo:MusicGroup;
+	foaf:name "ALL";
+	foaf:homepage <http://www.allcentral.com/>;
+	mo:wikipedia <http://en.wikipedia.org/wiki/ALL_%28band%29>;
+ 	foaf:member all:karlalvarez;
+ 	.
+ all:karlalvarez a foaf:Person;
+ 	foaf:name "Karl Alvarez";
+ 	.
+<http://en.wikipedia.org/wiki/ALL_%28band%29> a foaf:Document .
+<http://www.allcentral.com/> a foaf:Document .
+
+ # Description of the "Mass Nerder" album, from ALL
+ all:massnerder a mo:Record;
+ 	dc:title "Mass Nerder";
+ 	dc:creator all:all;
+ 	mo:available_as all:mycd;
+ 	mo:release_type mo:album; 
+ 	mo:release_status mo:official;
+ 	mo:track all:mnworldsonheroin;
+ 	mo:track all:mnillgetthere;
+ 	mo:track all:mnlifeontheroad;
+ 	.
+
+ # Description of one of my individual cd (the item)
+ all:mycd a mo:CD.
+
+
+ # Description of tracks of the Mass Nerder album
+ all:mnworldsonheroin a mo:Track;
+ 	dc:title "Worlds on Heroin";
+ 	mo:track_number "1"; 
+ 	.
+
+ all:mnillgetthere a mo:Track;
+ 	dc:title "I'll get there";
+ 	mo:track_number "2";
+ 	.
+
+ all:mnlifeontheroad a mo:Track;
+ 	dc:title "Life On The Road";
+ 	mo:track_number "3";
+ 	.
+
+ # Description of the fact that one of these tracks was also released in a compilation.
+ all:worldsonheroin a mo:Signal;
+ 	dc:title "Worlds on Heroin, actual signal (equivalent to the corresponding musicbrainz track)";
+ 	mo:published_as all:mnworldsonheroin;
+ 	mo:published_as all:porworldsonheroin;
+ 	.
+
+ all:porworldsonheroin a mo:Track.
+ # Describe here the Punk'O'Rama release on which this track is available... this record is a mo:compilation and mo:official
+
+ 
