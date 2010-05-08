@@ -1,0 +1,515 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY foaf "http://xmlns.com/foaf/0.1/" >
+    <!ENTITY mo "http://purl.org/ontology/mo/" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY owl2xml "http://www.w3.org/2006/12/owl2-xml#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY wgs84_pos "http://www.w3.org/2003/01/geo/wgs84_pos#" >
+    <!ENTITY myspace "http://purl.org/ontology/myspace#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<rdf:RDF xmlns="http://purl.org/ontology/myspace"
+     xml:base="http://purl.org/ontology/myspace#"
+     xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#"
+     xmlns:mo="http://purl.org/ontology/mo/"
+     xmlns:myspace="http://purl.org/ontology/myspace#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:foaf="http://xmlns.com/foaf/0.1/"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#">
+    <owl:Ontology rdf:about="">
+        <rdfs:comment
+            >An ontology for describing agents on MySpace, especially music artists</rdfs:comment>
+        <owl:imports rdf:resource="http://www.geonames.org/ontology"/>
+        <owl:imports rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    
+
+    <!-- http://purl.org/ontology/myspace#friend -->
+
+    <owl:ObjectProperty rdf:about="&myspace;friend">
+        <rdf:type rdf:resource="&owl;SymmetricProperty"/>
+        <rdfs:comment
+            >MySpace friend relationship - an undirected (symmetric) relationship and a subproperty of foaf:knows</rdfs:comment>
+        <rdfs:range rdf:resource="&foaf;Person"/>
+        <rdfs:domain rdf:resource="&foaf;Person"/>
+        <rdfs:subPropertyOf rdf:resource="&foaf;knows"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/ontology/myspace#genreTag -->
+
+    <owl:ObjectProperty rdf:about="&myspace;genreTag">
+        <rdf:type rdf:resource="&owl;AsymmetricProperty"/>
+        <rdfs:comment
+            >Associates a mo:MusicArtist with a genre tag specified by artists on MySpace</rdfs:comment>
+        <rdfs:domain rdf:resource="&mo;MusicArtist"/>
+	<rdfs:domain rdf:resource="&mo;MusicGroup"/>
+        <rdfs:range rdf:resource="&mo;Genre"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/ontology/myspace#topFriend -->
+
+    <owl:ObjectProperty rdf:about="&myspace;topFriend">
+        <rdf:type rdf:resource="&owl;AsymmetricProperty"/>
+        <rdfs:comment
+            >MySpace top friend relationship - a directed (asymmetric) relationship</rdfs:comment>
+        <rdfs:domain rdf:resource="&mo;MusicArtist"/>
+        <rdfs:range rdf:resource="&mo;MusicArtist"/>
+        <rdfs:domain rdf:resource="&foaf;Agent"/>
+        <rdfs:range rdf:resource="&foaf;Agent"/>
+        <rdfs:subPropertyOf rdf:resource="&foaf;knows"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/knows -->
+
+    <owl:ObjectProperty rdf:about="&foaf;knows"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <!-- http://purl.org/ontology/myspace#age -->
+
+    <owl:DatatypeProperty rdf:about="&myspace;age">
+        <rdfs:comment
+            >MySpace age - an age of a MySpace agent in years</rdfs:comment>
+        <rdfs:range rdf:resource="&xsd;int"/>
+        <rdfs:domain rdf:resource="&foaf;Agent"/>
+    </owl:DatatypeProperty>
+
+
+	<!-- http://purl.org/ontology/myspace#locality -->
+	<owl:DatatypeProperty rdf:about="&myspace;locality">
+        <rdfs:comment
+            >MySpace locality - the free text of the city/locality on myspace</rdfs:comment>
+		<rdfs:label>locality</rdfs:label>
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:domain rdf:resource="&foaf;Agent"/>
+    </owl:DatatypeProperty>
+
+	<!-- http://purl.org/ontology/myspace#region -->
+	<owl:DatatypeProperty rdf:about="&myspace;region">
+        <rdfs:comment
+            >MySpace region - the free text of the region/state on myspace</rdfs:comment>
+		<rdfs:label>region</rdfs:label>
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:domain rdf:resource="&foaf;Agent"/>
+    </owl:DatatypeProperty>
+
+	<!-- http://purl.org/ontology/myspace#country -->
+	<owl:DatatypeProperty rdf:about="&myspace;country">
+        <rdfs:comment
+            >MySpace country - the text of the country on myspace</rdfs:comment>
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:domain rdf:resource="&foaf;Agent"/>
+    </owl:DatatypeProperty>
+
+
+    <!-- http://purl.org/ontology/myspace#bandMembers -->
+
+    <owl:DatatypeProperty rdf:about="&myspace;bandMembers">
+	<rdfs:comment
+            >A data property container for the free text field on MySpace indicating 'band memebers'</rdfs:comment>
+        <rdfs:domain rdf:resource="&mo;MusicArtist"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/ontology/myspace#cachedMP3 -->
+
+    <owl:DatatypeProperty rdf:about="&myspace;cachedMP3">
+	<rdfs:comment
+            >A data property container for the cached audiofile url associated with a MySpace agent</rdfs:comment>
+	<rdfs:domain rdf:resource="&mo;MusicArtist"/>
+	<rdfs:domain rdf:resource="&mo;MusicGroup"/>        
+	<rdfs:domain rdf:resource="&mo;AudioFile"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/ontology/myspace#influences -->
+
+    <owl:DatatypeProperty rdf:about="&myspace;influences">
+		<rdfs:label>influences</rdfs:label>
+	<rdfs:comment
+            >A data property container for free text field specifying a music artist's influences on MySpace</rdfs:comment>
+        <rdfs:domain rdf:resource="&mo;MusicArtist"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/ontology/myspace#plays -->
+
+    <owl:DatatypeProperty rdf:about="&myspace;plays">
+		<rdfs:label>plays</rdfs:label>
+        <rdfs:comment
+            >A data property container for the number of plays for a given track on MySpace</rdfs:comment>
+        <rdfs:domain rdf:resource="&mo;AudioFile"/>
+		<rdfs:domain rdf:resource="&mo;Track"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/ontology/myspace#profileViews -->
+
+    <owl:DatatypeProperty rdf:about="&myspace;profileViews">
+        <rdfs:comment
+            >A data property container for the profile views associated with an agent on MySpace</rdfs:comment>
+	<rdfs:domain rdf:resource="&foaf;Agent"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/ontology/myspace#recordLabel -->
+
+    <owl:DatatypeProperty rdf:about="&myspace;recordLabel">
+	<rdfs:comment
+            >A data property container for the free text field indicating a music artist's record label on MySpace</rdfs:comment>
+        <rdfs:domain rdf:resource="&mo;MusicArtist"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/ontology/myspace#recordLabelType -->
+
+    <owl:DatatypeProperty rdf:about="&myspace;recordLabelType">
+	<rdfs:comment
+            >A data property container for the field indicating a music artist's record label type on MySpace</rdfs:comment>
+        <rdfs:domain rdf:resource="&mo;MusicArtist"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/ontology/myspace#soundsLike -->
+
+    <owl:DatatypeProperty rdf:about="&myspace;soundsLike">
+	<rdfs:comment
+            >A data property container for the free text field indicating what a music artist 'sounds like' on MySpace</rdfs:comment>
+        <rdfs:domain rdf:resource="&mo;MusicArtist"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/ontology/myspace#totalPlays -->
+
+    <owl:DatatypeProperty rdf:about="&myspace;totalPlays">
+	<rdfs:comment
+            >A data property container for the total number of track plays for an artist on MySpace</rdfs:comment>
+        <rdfs:domain rdf:resource="&mo;MusicArtist"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+        <rdfs:range rdf:resource="&xsd;integer"/>
+    </owl:DatatypeProperty>   
+
+	<!-- http://purl.org/ontology/myspace#totalFriends -->
+
+    <owl:DatatypeProperty rdf:about="&myspace;totalFriends">
+	<rdfs:comment
+            >A data property container for the total number of friends for a person on MySpace</rdfs:comment>
+        <rdfs:domain rdf:resource="&foaf;Agent"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+        <rdfs:range rdf:resource="&xsd;integer"/>
+    </owl:DatatypeProperty>
+
+    <!-- #myspaceID -->
+
+    <owl:DatatypeProperty rdf:about="&myspace;myspaceID">
+	<rdfs:comment
+            >A data property container for the MySpace user id number</rdfs:comment>
+        <rdfs:domain rdf:resource="&mo;MusicArtist"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+        <rdfs:range rdf:resource="&xsd;integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/ontology/myspace#Agent -->
+
+    <owl:Class rdf:about="&myspace;Agent">
+        <rdfs:subClassOf rdf:resource="&foaf;Agent"/>
+        <rdfs:comment>***Depricated use foaf:Person*** MySpace agent</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/ontology/myspace#AudioFile -->
+
+    <owl:Class rdf:about="&myspace;AudioFile">
+        <rdfs:subClassOf rdf:resource="&mo;AudioFile"/>
+        <rdfs:comment
+            >***Depricated use mo:AudioFile*** An audio file on a MySpace artist page</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/ontology/myspace#Country -->
+
+    <owl:Class rdf:about="&myspace;Country">
+	<rdfs:comment
+            >A country location specifiec on MySpace</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="&wgs84_pos;SpatialThing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/ontology/myspace#Genre -->
+
+    <owl:Class rdf:about="&myspace;Genre">
+        <rdfs:subClassOf rdf:resource="&mo;Genre"/>
+        <rdfs:comment
+            >MySpace genre from the list of 119 music genres currently specified by MySpace</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/ontology/myspace#MusicArtist -->
+
+    <owl:Class rdf:about="&myspace;MusicArtist">
+        <rdfs:subClassOf rdf:resource="&mo;MusicArtist"/>
+        <rdfs:subClassOf rdf:resource="&foaf;Person"/>
+        <rdfs:comment
+            >***Depricated use mo:MusicArtist*** MySpace Artist page</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/ontology/myspace#Page  ***DEPRICATED*** -->
+
+    <owl:Class rdf:about="&myspace;Page">
+        <rdfs:subClassOf rdf:resource="&foaf;Agent"/>
+        <rdfs:subClassOf rdf:resource="&foaf;Document"/>
+        <rdfs:comment>***Depricated use foaf:Person or mo:MusicArtist describing the person not the page*** MySpace page</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/ontology/mo/AudioFile -->
+
+    <owl:Class rdf:about="&mo;AudioFile"/>
+
+    <!-- http://purl.org/ontology/mo/Track -->
+
+    <owl:Class rdf:about="&mo;Track"/>
+    
+
+
+    <!-- http://purl.org/ontology/mo/Genre -->
+
+    <owl:Class rdf:about="&mo;Genre"/>
+    
+
+
+    <!-- http://purl.org/ontology/mo/MusicArtist -->
+
+    <owl:Class rdf:about="&mo;MusicArtist"/>
+    
+
+
+    <!-- http://www.w3.org/2000/01/rdf-schema#Literal -->
+
+    <owl:Class rdf:about="&rdfs;Literal"/>
+    
+
+
+    <!-- http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing -->
+
+    <owl:Class rdf:about="&wgs84_pos;SpatialThing"/>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Agent -->
+
+    <owl:Class rdf:about="&foaf;Agent"/>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Document -->
+
+    <owl:Class rdf:about="&foaf;Document"/>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Person -->
+
+    <owl:Class rdf:about="&foaf;Person">
+        <rdfs:subClassOf rdf:resource="&foaf;Agent"/>
+    </owl:Class>
+
+	<!-- myspace genre listing -->
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Acoustic"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Alternative"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Ambient"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Bluegrass"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Blues"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Christian"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Christian_Rap"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Classic_Rock"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Club"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Comedy"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Country"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Death_Metal"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Electronica"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Emo"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Experimental"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Folk"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Folk_Rock"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Funk"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Grunge"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Hardcore"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Hip_Hop"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#House"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Indie"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Jam_Band"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Jazz"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Metal"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Other"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Pop"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Pop_Punk"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Powerpop"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Progressive"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Psychedelic"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Punk"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#R_and_B"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Rap"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Reggae"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Rock"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Screamo"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Ska"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Soul"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Southern_Rock"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Psychobilly"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Rockabilly"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Industrial"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Gothic"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Grindcore"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Surf"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Latin"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Drum_and_Bass"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Black_Metal"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Trance"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Techno"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Thrash"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Trip_Hop"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Garage"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Hard_House"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Jungle"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#A'cappella"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Breakbeat"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#2-step"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Progrsv_House"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Disco_House"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Big_Beat"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Nu-Jazz"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Electro"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Dub"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#IDM"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Down-tempo"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Happy_Hardcore"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Afro-beat"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Lounge"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#New_Wave"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Classical"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Shoegaze"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Glam"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Tropical"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Americana"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Roots_Music"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Grime"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Showtunes"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Idol"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Anime_Song"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Visual"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Japanese_Pop"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Korean_Pop"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Melodramatic_Popular_Song"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Japanese_Classic_Music"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Healing_and_EasyListening"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Bossa_Nova"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Soundtracks_/_Film_music"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Flamenco"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Tango"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Children"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Classical_-_Opera_and_Vocal"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Religious"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Gospel"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Lyrical"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Swing"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Salsa"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Samba"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Zouk"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Celtic"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#French_pop"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#German_pop"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Italian_pop"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Spanish_pop"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Dutch_pop"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Fusion"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Acousmatic_/_Tape_music"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Concrete"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Electroacoustic"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Live_Electronics"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Breakcore"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Post_punk"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Minimalist"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Trance"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Emotronic"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Chinese_pop"/>
+	<myspace:Genre rdf:about="http://purl.org/ontology/myspace#Chinese_traditional"/>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 2.2.1.941) http://owlapi.sourceforge.net -->
+
