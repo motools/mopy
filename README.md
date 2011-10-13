@@ -245,7 +245,7 @@ Examples of `mopy` in use
 
 * The [`gnat` project](https://github.com/motools/gnat) is using `mopy` to store information about a user's music collection.
 
-eg. for metadata lookup : (from `[AudioCollection.py](https://github.com/motools/gnat/blob/master/src/gnat/AudioCollection.py)`)
+eg. for metadata lookup : (from [`AudioCollection.py`](https://github.com/motools/gnat/blob/master/src/gnat/AudioCollection.py))
 
 	lookup = MbzTrackLookup(filename)
 	mbzuri = lookup.getMbzTrackURI()
@@ -259,7 +259,7 @@ eg. for metadata lookup : (from `[AudioCollection.py](https://github.com/motools
 
 * Some Chord Ontology [convertor tools](https://github.com/motools/chordontology) are using mopy's timeline and chord ontology support to convert existing transcription formats to RDF.
 
-eg. from `[labchords2RDF.py](https://github.com/motools/chordontology/blob/master/labchords2RDF.py)` :
+eg. from [`labchords2RDF.py`](https://github.com/motools/chordontology/blob/master/labchords2RDF.py):
 	
 	tl = RelativeTimeLine("#tl")
 	tl.label = "Timeline derived from "+infilename
