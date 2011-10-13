@@ -1,8 +1,9 @@
 Mopy Readme
-=============
+===========
 
 Contents
 --------
+
 1. [Introduction](#introduction)
 2. [Interactive Session Example (a.k.a. "why use `mopy` ?")](#interactivesessionexamplea.k.a.whyusemopy)
 3. [Requirements](#requirements)
@@ -22,13 +23,14 @@ Introduction
 	* the [Music Ontology](http://www.musicontology.com/)
 	* the [Friend of a Friend](http://www.foaf-project.org/) (FOAF) ontology
 	* the [Timeline](http://moustaki.org/c4dm/timeline.owl) ontology
-	* the (new !) [Chord Ontology](http://purl.org/ontology/chord/)
+	* the [Chord Ontology](http://purl.org/ontology/chord/)
+	* ...
 * Easy conversion between RDF data and mopy objects
 	* RDF can be read/written in XML or N3 format
 * Type checking based on ontology definitions, to aid correct usage of ontology terms
 
 Interactive Session Example (a.k.a. "why use `mopy` ?")
----------------------------
+-------------------------------------------------------
 
 Using rdflib directly, somebody might try to write about their friend who's in a band as follows :
 
@@ -86,20 +88,20 @@ The user has avoided the mistakes which are so easy to make dealing directly wit
 	>>> artist.URI = "http://zitgist.com/music/artist/62b86b55-e0aa-446f-b326-054576968310"
 
 Requirements
-----------
+------------
 
-- Written and tested on python 2.4 but may work fine on 2.3 or 2.5 - let us know if you try :)
-- Python libraries :
-  - [rdflib](http://rdflib.org/) v2.4.0 (easy_install)
+* Written and tested on python 2.4 but may work fine on 2.3 or 2.5 or higher - let us know if you try :)
+* Python libraries :
+	* [rdflib](http://rdflib.org/) v2.4.0 (easy_install)
 
 
 Installation
-----------
+------------
 
-To install mopy, either check out the motools project from SVN and run mopy/genpy.py to generate mopy's package files, or download the mopy package directly from [sourceforge](http://sourceforge.net/project/showfiles.php?group_id=202492). For now, just copy the mopy directory into your working directory, or your python's library directory, we'll be releasing an easier-to-install package soon :)
+To install mopy, either clone the mopy project from Git and run mopy/genpy.py to generate mopy's package files, or download the mopy package directly from [GitHub](https://github.com/motools/mopy/zipball/master). For now, just copy the mopy directory into your working directory, or your python's library directory, we'll be releasing an easier-to-install package soon :)
 
 `mopy` Classes
-----------
+--------------
 
 Start by importing the mopy package :
 
@@ -134,7 +136,7 @@ Constructors take the URI of the resource, or if omitted, act as blank nodes :
 	-- MusicGroup @ http://band2.com/us --
 
 `mopy` Properties
------------
+-----------------
 
 Properties are all treated as sets (so have no ordering), but we provide the shortcut of the '=' operator to assign a one element set :
 
@@ -172,7 +174,7 @@ Properties are all treated as sets (so have no ordering), but we provide the sho
 
 
 `MusicInfo` objects
-----------
+-------------------
 
 To bundle up multiple mopy objects for serialisation, you can use the `MusicInfo` class :
 
@@ -239,11 +241,11 @@ produces:
 
 
 Examples of `mopy` in use
-----------
+-------------------------
 
-* The [`gnat` project](http://sourceforge.net/projects/motools/) is using `mopy` to store information about a user's music collection.
+* The [`gnat` project](https://github.com/motools/gnat) is using `mopy` to store information about a user's music collection.
 
-eg. for metadata lookup : (from `AudioCollection.py`)
+eg. for metadata lookup : (from `[AudioCollection.py](https://github.com/motools/gnat/blob/master/src/gnat/AudioCollection.py)`)
 
 	lookup = MbzTrackLookup(filename)
 	mbzuri = lookup.getMbzTrackURI()
@@ -253,11 +255,11 @@ eg. for metadata lookup : (from `AudioCollection.py`)
 	mbz.available_as = af
 	mi.add(af); mi.add(mbz)
 
-* A more detailed use can be found in the FPTrackLookup.py fingerprinting file.
+* A more detailed use can be found in the [FPTrackLookup.py](https://github.com/motools/gnat/blob/master/src/gnat/FPTrackLookup.py) fingerprinting file.
 
-* Some Chord Ontology [convertor tools](http://sourceforge.net/projects/motools/) are using mopy's timeline and chord ontology support to convert existing transcription formats to RDF.
+* Some Chord Ontology [convertor tools](https://github.com/motools/chordontology) are using mopy's timeline and chord ontology support to convert existing transcription formats to RDF.
 
-eg. from `labchords2RDF.py` :
+eg. from `[labchords2RDF.py](https://github.com/motools/chordontology/blob/master/labchords2RDF.py)` :
 	
 	tl = RelativeTimeLine("#tl")
 	tl.label = "Timeline derived from "+infilename
@@ -293,5 +295,10 @@ Developers
 ----------
   
 * Christopher Sutton : `chris (at) chrissutton (dot) org`  
-* Yves Raimond : `yves (at) dbtune (dot) org`  
+* Yves Raimond : `yves (at) dbtune (dot) org`
+
+PS
+--
+
+The [old project repository location at SourceForge](http://motools.svn.sourceforge.net/viewvc/motools/mopy/) is now deprecated. All new developments will be pushed to this repository location here at GitHub.  
 
