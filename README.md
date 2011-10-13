@@ -28,7 +28,7 @@ Introduction
 * Easy conversion between RDF data and mopy objects
 	* RDF can be read/written in XML or N3 format
 * Type checking based on ontology definitions, to aid correct usage of ontology terms
-* mopy 0.3 changes:
+* mopy 0.3 changes (by [zazi](http://github.com/zazi)):
 	* massive ontology update and reconfigurement
 	* small error corrections (shown from Eclipse PyDev)
 	* + dcelements
