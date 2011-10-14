@@ -98,7 +98,7 @@ Requirements
 Installation
 ------------
 
-To install mopy, either clone the mopy project from Git and run mopy/genpy.py to generate mopy's package files, or download the mopy package directly from [GitHub](https://github.com/motools/mopy/zipball/master). For now, just copy the mopy directory into your working directory, or your python's library directory, we'll be releasing an easier-to-install package soon :)
+To install mopy, either clone the mopy project from Git and run [genpy.py](https://github.com/motools/mopy/blob/master/genpy.py) to generate mopy's package files, or download the mopy package directly from [GitHub](https://github.com/motools/mopy/zipball/master). For now, just copy the mopy directory into your working directory, or your python's library directory, we'll be releasing an easier-to-install package soon :)
 
 `mopy` Classes
 --------------
@@ -176,7 +176,7 @@ Properties are all treated as sets (so have no ordering), but we provide the sho
 `MusicInfo` objects
 -------------------
 
-To bundle up multiple mopy objects for serialisation, you can use the `MusicInfo` class :
+To bundle up multiple mopy objects for serialisation, you can use the [`MusicInfo`](https://github.com/motools/mopy/blob/master/genpy.py) class :
 
 	>>> mi = mopy.MusicInfo([band1] + list(band1.member))
 	>>> for o in mi.MusicGroupIdx.values():
